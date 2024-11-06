@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.title("This is my First Streamlit APP")
+st.title("Hello Sreeraj How are You")
 st.write(
-    "I will be using StreamLit to deploy my machine learning Applications to showcase my work"
+    "Hehehehehe"
 )
