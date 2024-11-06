@@ -1,9 +1,16 @@
 import streamlit as st
 import datetime
-st.title("My App")
+st.title("Asmit Exercise")
+@st.fragment(run_every="10s")
 def auto_function():
-		# This will update every 10 seconds!
-		df = str(datetime.datetime.now().strftime("%d-%m-%y %h:%M:%s"))
-		st.write(df)
+		seconds=datetime.datetime.now().second
+		if seconds%5==0:
+			st.write("Asmit Stand!")
+		if second%10==0:
+			st.write("Asmit Jump!")
+		if second %7==0:
+			st.write("Asmit Sit")
+			
+		
 
 auto_function()
