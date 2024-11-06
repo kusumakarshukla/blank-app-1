@@ -6,10 +6,12 @@ def auto_function():
 		seconds=int(datetime.datetime.now().second)
 		if seconds%5==0:
 			st.write("Asmit Stand!")
-		if seconds%10==0:
+		elif seconds%8==0:
 			st.write("Asmit Jump!")
-		if seconds %7==0:
+		elif seconds %7==0:
 			st.write("Asmit Sit")
+		else:
+			st.write("Asmit Smile")
 			
 		
 
