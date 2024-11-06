@@ -1,10 +1,10 @@
 import streamlit as st
-
+import datetime
 st.title("My App")
 @st.fragment(run_every="10s")
 def auto_function():
 		# This will update every 10 seconds!
-		df = get_latest_updates()
-		st.line_chart(df)
+		df = str(datetime.datetime.now())
+		st.write(df)
 
 auto_function()
