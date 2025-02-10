@@ -74,9 +74,9 @@ yfinance_symbols = {
 
 # Function to fetch stock data
 def get_stock_data(symbol,name, start="2024-01-01", end="2025-02-11"):
-    end= datetime.datetime.now().strftime("%Y-%m-%d")
-    print(end)
-    end="2025-02-11"
+    from datetime import timedelta
+    start=(datetime.datetime.now()-timedelta(days=300)).strftime("%Y-%m-%d")
+    end=(datetime.datetime.now().strftime("%Y-%m-%d")+timedelta(days=10)).strftime("%Y-%m-%d")
     df = yf.download(symbol, start=start, end=end)
 
     # Flatten MultiIndex columns (if applicable)
