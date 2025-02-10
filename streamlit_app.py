@@ -187,7 +187,7 @@ for name,symbol in yfinance_symbols.items():
 final=pd.concat(stocks)
 output=get_signal(final)
 signals = get_buysell(final)
-st.subheader(output)
+st.title(output)
 st.subheader(signals)
 				
 		
