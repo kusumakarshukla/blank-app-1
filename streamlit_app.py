@@ -162,7 +162,8 @@ def get_signal(df):
   sell = str(sell.Name.unique())
   return "BUY ---- "+buy+ "   SELL---- "+sell
 
-print("Getting data from yfinance")	
+print("Getting data from yfinance")
+stocks=[]
 for name,symbol in yfinance_symbols.items():
 	          df = get_stock_data(symbol,name)  # Changed interval to 4 hours
 	          df = calculate_indicators(df)
