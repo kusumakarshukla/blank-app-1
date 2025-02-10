@@ -1,5 +1,11 @@
 import streamlit as st
 import datetime
+import yfinance as yf
+import pandas as pd
+import numpy as np
+import ta
+
+
 print("Loading the application kusumakar")
 yfinance_symbols = {
     "S&P 500": "^GSPC",
@@ -64,11 +70,6 @@ yfinance_symbols = {
 }
 
 
-import yfinance as yf
-import pandas as pd
-import numpy as np
-import ta
-import matplotlib.pyplot as plt
 
 # Function to fetch stock data
 def get_stock_data(symbol,name, start="2024-01-01", end="2025-02-11"):
@@ -149,22 +150,7 @@ def generate_signals_and_trend(df):
     return df
 
 # Function to plot results
-def plot_trading_signals(df, symbol):
-    plt.figure(figsize=(14,7))
-    plt.plot(df['Close'], label='Close Price', alpha=0.5)
-    plt.plot(df['SMA_50'], label='50-period SMA', linestyle='dashed')
-    plt.plot(df['SMA_200'], label='200-period SMA', linestyle='dotted')
-    plt.plot(df['BB_Upper'], label='Upper Bollinger Band', linestyle='dotted', color='r')
-    plt.plot(df['BB_Lower'], label='Lower Bollinger Band', linestyle='dotted', color='g')
 
-    plt.scatter(df.index, df['Buy_Signal'], label='Buy Signal', marker='^', color='green', alpha=1, s=100)
-    plt.scatter(df.index, df['Sell_Signal'], label='Sell Signal', marker='v', color='red', alpha=1, s=100)
-
-    plt.title(f"{symbol} Trading Strategy (4-hour chart)")
-    plt.xlabel('Date')
-    plt.ylabel('Price')
-    plt.legend()
-    plt.show()
 def get_signal(df):
   buy=df[(df.RSI<=30) & (df.Trend=='Uptrend') & (df.Month==2) & (df.Year==2025)]
     
@@ -176,26 +162,16 @@ def get_signal(df):
   sell = str(sell.Name.unique())
   return "BUY ---- "+buy+ "   SELL---- "+sell
 
-
-    
-    
-
-
-
-
-
-@st.fragment(run_every="1m")
-def auto_function():
-	print("Getting data from yfinance")	
-	for name,symbol in yfinance_symbols.items():
+print("Getting data from yfinance")	
+for name,symbol in yfinance_symbols.items():
 	          df = get_stock_data(symbol,name)  # Changed interval to 4 hours
 	          df = calculate_indicators(df)
 	          df = generate_signals_and_trend(df)
 	          stocks.append(df)
 
-	final=pd.concat(stocks)
-	output=get_signal(final)
-	st.title("Asmit Smile")
+final=pd.concat(stocks)
+output=get_signal(final)
+st.title("Asmit Smile")
 				
 		
 
