@@ -74,6 +74,8 @@ yfinance_symbols = {
 
 # Function to fetch stock data
 def get_stock_data(symbol,name, start="2024-01-01", end="2025-02-11"):
+    end= datetime.datetime.now().strftime("%Y-%m-%d")
+    
     df = yf.download(symbol, start=start, end=end)
 
     # Flatten MultiIndex columns (if applicable)
