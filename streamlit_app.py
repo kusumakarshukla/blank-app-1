@@ -162,12 +162,19 @@ def get_signal(df):
   buy=df[(df.RSI<=30) & (df.Trend=='Uptrend') & (df.Month==2) & (df.Year==2025)]
     
   sell = df[(df.RSI>=50) & (df.Trend=='Downtrend') & (df.Month==2) & (df.Year==2025)]
- 
+
   print("-------   BUY  ---------")
   buy= str(buy.Name.unique())
   print("----------SELL -- ")
   sell = str(sell.Name.unique())
   return "BUY ---- "+buy+ "   SELL---- "+sell
+def get_buysell(df):
+  d=datetime.datetime.now().strftime("%Y-%m-%d")
+  k=df[df.Date==d]
+  sell=str(k[~(k['Sell_Signal'].isna())]['Name'].unique())
+  buy=str(k[~(k['Buy_Signal'].isna())]['Name'].unique())
+  return "CURRENT STATUS SELL--->>>>>"+sell+" BUY---->>>>"+buy
+	
 
 print("Getting data from yfinance")
 stocks=[]
@@ -179,7 +186,9 @@ for name,symbol in yfinance_symbols.items():
 
 final=pd.concat(stocks)
 output=get_signal(final)
-st.title(output)
+signals = get_buysell(final)
+st.subheader(output)
+st.subheader(signals)
 				
 		
 
