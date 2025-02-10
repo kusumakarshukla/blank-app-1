@@ -187,7 +187,7 @@ def get_signal(df):
 
 def auto_function():
 		
-		for name,symbol in yfinance_symbols.items():
+	for name,symbol in yfinance_symbols.items():
 
       		df = get_stock_data(symbol,name)  # Changed interval to 4 hours
       		df = calculate_indicators(df)
