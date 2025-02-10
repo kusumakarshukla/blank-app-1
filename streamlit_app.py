@@ -4,6 +4,7 @@ import yfinance as yf
 import pandas as pd
 import numpy as np
 import ta
+import datetime
 
 
 print("Loading the application kusumakar")
@@ -152,6 +153,9 @@ def generate_signals_and_trend(df):
 # Function to plot results
 
 def get_signal(df):
+	
+  d=datetime.datetime.now().strftime("%Y-%m-%d")
+  df=df[df.Date==d]
   buy=df[(df.RSI<=30) & (df.Trend=='Uptrend') & (df.Month==2) & (df.Year==2025)]
     
   sell = df[(df.RSI>=50) & (df.Trend=='Downtrend') & (df.Month==2) & (df.Year==2025)]
