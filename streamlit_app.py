@@ -172,7 +172,7 @@ for name,symbol in yfinance_symbols.items():
 
 final=pd.concat(stocks)
 output=get_signal(final)
-st.title("Asmit Smile")
+st.title(output)
 				
 		
 
