@@ -1,6 +1,6 @@
 import streamlit as st
 import datetime
-
+print("Loading the application kusumakar")
 yfinance_symbols = {
     "S&P 500": "^GSPC",
     "NASDAQ Composite": "^IXIC",
@@ -186,7 +186,7 @@ def get_signal(df):
 
 @st.fragment(run_every="1m")
 def auto_function():
-		
+	print("Getting data from yfinance")	
 	for name,symbol in yfinance_symbols.items():
 	          df = get_stock_data(symbol,name)  # Changed interval to 4 hours
 	          df = calculate_indicators(df)
