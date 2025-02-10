@@ -187,17 +187,16 @@ def get_signal(df):
 @st.fragment(run_every="1m")
 def auto_function():
 		
-    for name,symbol in yfinance_symbols.items():
-          df = get_stock_data(symbol,name)  # Changed interval to 4 hours
-          df = calculate_indicators(df)
-          df = generate_signals_and_trend(df)
-          stocks.append(df)
+	for name,symbol in yfinance_symbols.items():
+	          df = get_stock_data(symbol,name)  # Changed interval to 4 hours
+	          df = calculate_indicators(df)
+	          df = generate_signals_and_trend(df)
+	          stocks.append(df)
 
-      		
-    final=pd.concat(stocks)
-    get_signal(final)
-	  st.title("Asmit Smile")
-			
+	final=pd.concat(stocks)
+	output=get_signal(final)
+	st.title("Asmit Smile")
+				
 		
 
 
