@@ -14,6 +14,10 @@ REFRESH_INTERVAL = 300  # 5 minutes in seconds
 # Function to fetch forex data
 def get_stock_data(symbol, interval="1d", period="30d"):
     stock = yf.download(symbol, interval=interval, period=period)
+    if isinstance(df.columns, pd.MultiIndex):
+        df.columns = df.columns.get_level_values(0)
+    
+    df.dropna(inplace=True)
     return stock
 
 # Function to calculate technical indicators
